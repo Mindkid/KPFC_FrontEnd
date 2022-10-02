@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from "react-bootstrap";
 import PropTypes from 'prop-types';
-
-async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-
-}
+import {loginUser} from '../communication/backend'
 
 export default function Login({ setIsLogin }) {
     const [email, setEmail] = useState();
@@ -25,11 +15,9 @@ export default function Login({ setIsLogin }) {
             password
         }).then(async response => {
             if (!response.ok) {
-                // get error message from body or default to response status
                 const error = response.status;
                 return Promise.reject(error);
             }
-
             setIsLogin(true)
         })
         .catch(error => {
