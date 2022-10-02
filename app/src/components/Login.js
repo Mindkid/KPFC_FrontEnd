@@ -9,22 +9,33 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json())
+
 }
 
 export default function Login({ setIsLogin }) {
-    const [username, setUserName] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [ error, setError] = useState();
 
     const handleSubmit = async e => {
         e.preventDefault();
         await loginUser({
-            username,
+            email,
             password
-        });
+        }).then(async response => {
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = response.status;
+                return Promise.reject(error);
+            }
 
-        setIsLogin(true);
+            setIsLogin(true)
+        })
+        .catch(error => {
+            setError("Wrong email or password.")
+        });
     }
+
 
     return (
         <div className="login">
@@ -34,7 +45,7 @@ export default function Login({ setIsLogin }) {
                     <form className='loginForm' onSubmit={handleSubmit}>
                         <div className='userInfo'>
                             <label for="userEmail">Email: </label>
-                            <input type="email" name="userEmail" placehoholder="Enter Email" onChange={e => setUserName(e.target.value)} required />
+                            <input type="email" name="userEmail" placehoholder="Enter Email" onChange={e => setEmail(e.target.value)} required />
                             <br />
                             <label for="userPassword">Password: </label>
                             <input type="password" name="userPassword" placehoholder="Enter Password" onChange={e => setPassword(e.target.value)} required />
@@ -42,7 +53,9 @@ export default function Login({ setIsLogin }) {
                         <br />
                         <button className="loginButton" type="submit" >Login</button>
                     </form>
-
+                    <div className='error'>
+                        <p >{error}</p>
+                    </div>
                 </div>
             </header>
         </div>

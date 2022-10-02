@@ -10,15 +10,20 @@
 .userInfo {
   text-align: left;
 }
+
 .userSearchButtonContainer{
   display: inline-block;
   padding-left: 1rem;
 }
+
 .logoutButton{
   padding: 1rem;
-
 }
 
+.error{
+  color: red;
+  font-size: calc(5px + 2vmin);
+}
 .login{
   background-color: #282c34;
   text-align: center;
