@@ -3,17 +3,28 @@
   min-width: 100vh;
   text-align: center;
   background-color: #282c34;
-  font-size: calc(10px + 2vmin);
   color: white;
   flex-direction: column;
 }
+
+.commentTitle{
+  font-weight: bold ;
+}
+.postMural{
+  text-align: left;
+}
+
 .userInfo {
   text-align: left;
 }
 
-.userSearchButtonContainer{
+.inputLabel {
+  padding-right: 2rem;
+}
+
+.userSearchButtonContainer, .form-control{
   display: inline-block;
-  padding-left: 1rem;
+  padding: 1rem;
 }
 
 .logoutButton{

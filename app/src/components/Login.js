@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Button } from "react-bootstrap";
 import PropTypes from 'prop-types';
 
 async function loginUser(credentials) {
@@ -42,17 +43,21 @@ export default function Login({ setIsLogin }) {
             <header >
                 <div>
                     <h1>Welcome</h1>
-                    <form className='loginForm' onSubmit={handleSubmit}>
-                        <div className='userInfo'>
+                    <Form className='loginForm' onSubmit={handleSubmit}>
+                        <div class="form-group">
                             <label for="userEmail">Email: </label>
-                            <input type="email" name="userEmail" placehoholder="Enter Email" onChange={e => setEmail(e.target.value)} required />
-                            <br />
+                            <div className='userSearchButtonContainer'>
+                                <input type="email" className='form-control' name="userEmail" placehoholder="Enter Email" onChange={e => setEmail(e.target.value)} required />
+                            </div>
+                            <br/>
                             <label for="userPassword">Password: </label>
-                            <input type="password" name="userPassword" placehoholder="Enter Password" onChange={e => setPassword(e.target.value)} required />
+                            <div className='userSearchButtonContainer'>
+                                <input type="password" className='form-control' name="userPassword" placehoholder="Enter Password" onChange={e => setPassword(e.target.value)} required />
+                            </div>
                         </div>
                         <br />
-                        <button className="loginButton" type="submit" >Login</button>
-                    </form>
+                        <Button className="loginButton" type="submit" >Login</Button>
+                    </Form>
                     <div className='error'>
                         <p >{error}</p>
                     </div>
